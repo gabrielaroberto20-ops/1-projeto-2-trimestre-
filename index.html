@@ -1,10 +1,174 @@
-
 <!DOCTYPE html> 
 <html lang="pt-br"> 
   <head> 
     <meta charset="UTF-8" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
     <title>Flashcards de Mitos e Verdades - Saúde Visual</title> 
+    <style>
+      /* Configurações Gerais e Cores */
+      :root {
+        --cor-fundo: #f4f7f6;
+        --cor-primaria: #2c3e50;
+        --cor-secundaria: #16a085;
+        --cor-texto: #333;
+        --cor-card-fundo: #ffffff;
+        --cor-mito: #e74c3c;
+        --cor-verdade: #2ecc71;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--cor-fundo);
+        color: var(--cor-texto);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Cabeçalho */
+      header {
+        background-color: var(--cor-primaria);
+        color: white;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      nav a:hover {
+        background-color: var(--cor-secundaria);
+      }
+
+      /* Conteúdo Principal */
+      main {
+        flex: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        width: 100%;
+      }
+
+      main h2 {
+        text-align: center;
+        color: var(--cor-primaria);
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+      }
+
+      /* Grid de Cards */
+      section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 1rem 0;
+      }
+
+      /* Estrutura do Efeito Flip (Virar Card) */
+      article {
+        background-color: transparent;
+        width: 100%;
+        height: 400px;
+        perspective: 1000px; /* Cria o efeito 3D */
+      }
+
+      /* O container que realmente gira */
+      article > div {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 12px;
+      }
+
+      /* Quando passa o mouse, gira 180 graus */
+      article:hover > div {
+        transform: rotateY(180deg);
+      }
+
+      /* Frente e Verso */
+      .cartao-frente, .cartao-verso {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Suporte Safari */
+        backface-visibility: hidden; /* Esconde o lado de trás enquanto vira */
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: var(--cor-card-fundo);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Estilo específico do Verso */
+      .cartao-verso {
+        transform: rotateY(180deg);
+      }
+
+      /* Imagens dos Cards */
+      .cartao-imagem {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+
+      /* Textos dos Cards */
+      article p {
+        padding: 1.5rem;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        font-weight: 500;
+      }
+
+      /* Cores de destaque para diferenciar visualmente o Mito da Verdade */
+      .cartao-frente p {
+        border-top: 5px solid var(--cor-mito);
+        color: #c0392b;
+      }
+
+      .cartao-verso p {
+        border-top: 5px solid var(--cor-verdade);
+        color: #27ae60;
+        background-color: #f9fdfa;
+      }
+
+      /* Rodapé */
+      footer {
+        background-color: var(--cor-primaria);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+      }
+    </style>
   </head> 
   <body> 
 
@@ -16,7 +180,7 @@
     </header>
 
     <main> 
-      <h2>Descubra a verdade passando o mouse nos mitos e verdades</h2> 
+      <h2>Descubra a verdade passando o mouse nos cards</h2> 
       
       <section> 
         <article> 
